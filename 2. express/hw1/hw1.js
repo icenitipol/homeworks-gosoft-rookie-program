@@ -3,13 +3,9 @@ const app = express();
 const port = 3000;
 
 const game24Solver = (nums = [], step = "", expectedResult = 24) => {
-    
     let results = []
     if (step === "") step = "" + nums[0]
-    if (nums.includes(expectedResult) && nums.length == 1) {
-        console.log({nums, step})
-        return [step]
-    }
+    if (nums.includes(expectedResult) && nums.length == 1) return [step];
     for (let i = 0; i < nums.length; i++) {
         for (let j = 0; j < nums.length; j++) {
             if (i != j) {
@@ -44,7 +40,7 @@ app.get('/:n1/:n2/:n3/:n4', (req, res) => {
     const nums = [p.n1, p.n2, p.n3, p.n4]
     console.log({ nums })
     for (let i = 0; i < nums.length; i++) {
-        if (!/^[1-9]{1,1}$/.exec(nums[i]) || nums[i] < 1 || nums[i] > 9) {
+        if (!/^[1-9]{1,1}$/.exec(nums[i])) {
             return res.status(403).json({
                 status: "failed",
                 msg: `should enter number in range 0-9, example: ${req.get('host')}/1/2/3/4` 
@@ -54,13 +50,7 @@ app.get('/:n1/:n2/:n3/:n4', (req, res) => {
     }
     const results = game24Solver(nums)
     console.log(results.length)
-    if(results.length > 0) {
-        res.status(200).json({ status: "success", results });
-    }
-    else {
-        res.status(200).json({ status: "failed no result found" });
-    }
-    
+    res.json({ status: results.length > 0 ? "success" : "failed no result found", results });
 });
 
 app.listen(port, () => {
