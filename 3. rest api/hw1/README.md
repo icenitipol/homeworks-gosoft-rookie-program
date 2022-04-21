@@ -52,7 +52,5 @@
 ![img](https://i.imgur.com/7Fjonn5.png)
 
 ### [DELETE] /deleteEmployeeData
-> เพิ่มข้อมูล Employee 
-![img](https://i.imgur.com/2kowm19.png)
-> เพิ่มข้อมูล Employee (เมื่อข้อมูลซ้ำ)
-![img](https://i.imgur.com/wpBGAxA.png)
+> ลบข้อมูล Employee 
+![img](https://i.imgur.com/obND8bN.png)
