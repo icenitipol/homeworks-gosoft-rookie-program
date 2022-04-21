@@ -1,10 +1,1 @@
-[
-    {
-        "id" : "1",
-        "firstname" : "first",
-        "lastname" : "person",
-        "position" : "admin",
-        "tel" : "191",
-        "email" : "admin@admin.admin"
-    }
-]
+[{"id":"1","firstname":"first","lastname":"person","position":"admin","tel":"191","email":"admin@admin.admin"},{"id":"id2","firstname":"somsak","lastname":"saksom","position":"boss","tel":"1919","email":"mail2@mail.mail"}]

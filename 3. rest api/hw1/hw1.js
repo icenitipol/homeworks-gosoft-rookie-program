@@ -1,9 +1,14 @@
 const express = require('express');
+const fs = require('fs');
 const app = express();
-app.use(express.json())
+app.use(express.json());
 const port = 3000;
 
 const employee_data = require('./employee_data.json')
+
+const saveEmployeeData = () => {
+    fs.writeFileSync('./employee_data.json', JSON.stringify(employee_data))
+}
 
 const response = (res, data = undefined, status = 200) => {
     res.status(status).json({ data })
@@ -17,7 +22,7 @@ const findEmployeeIndex = (keyName, findValue) => {
     for (let i = 0; i < employee_data.length; i++) {
         if (employee_data[i][keyName] == findValue) return i;
     }
-    return -1;
+    return null;
 }
 
 const findEmployee = (keyName, findValue) => {
@@ -35,7 +40,7 @@ app.get('/getEmployeeData', (req, res) => {
 
 app.post('/addEmployeeData', (req, res) => {
     const body = req.body;
-    console.log({body})
+    console.log({ body })
     if (
         !body ||
         !body["id"] ||
@@ -65,12 +70,12 @@ app.post('/addEmployeeData', (req, res) => {
 
     employee_data.push(newEmployeeData);
 
-    return response(res)
+    saveEmployeeData();
+    response(res)
 })
 
 app.put('/updateEmployeeData', (req, res) => {
     const body = req.body;
-    console.log({body})
     if (
         !body ||
         !body["id"] ||
@@ -83,14 +88,27 @@ app.put('/updateEmployeeData', (req, res) => {
         false
     ) return responseError(res, "Invalid Input Data")
 
+    const id = findEmployeeIndex("id", body["id"])
+    console.log({id})
+    if(!id) return responseError(res, "Employee Not Found")
+    if (body["position"]) employee_data[id].position = body["position"];
+    if (body["tel"]) employee_data[id].tel = body["tel"];
+    if (body["email"]) employee_data[id].email = body["email"];
+    saveEmployeeData();
     response(res)
 })
 
 app.delete('/deleteEmployeeData', (req, res) => {
-
+    const body = req.body;
+    if (!body || !body["id"]) return responseError(res, "Invalid Input Data")
+    const id = findEmployeeIndex("id", body["id"])
+    if(!id) return responseError(res, "Employee Not Found")
+    employee_data.splice(id, 1);
+    saveEmployeeData();
+    response(res)
 })
 
 app.listen(port, () => {
-    console.log(`Listening at http://localhost:${port}`);
+    console.log(`Listening on port: ${port}`);
 });
 

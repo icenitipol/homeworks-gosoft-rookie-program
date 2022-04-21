@@ -23,4 +23,36 @@
 
 ## ผลลัพท์
 
-![img]()
+### Method
+| Method | Path                |  Description |
+|--------|---------------------|--------------|
+| GET    | /getEmployeeData    | ดูข้อมูล       |
+| POST   | /addEmployeeData    | เพิ่มข้อมูล     |
+| PUT    | /updateEmployeeData | แก้ไขข้อมูล    |
+| DELETE | /deleteEmployeeData | ลบข้อมูล      |
+
+### [GET] /getEmployeeData
+> ดึงข้อมูล Employee 
+![img](https://i.imgur.com/Fg5VPI0.png)
+
+### [POST] /addEmployeeData
+> เพิ่มข้อมูล Employee 
+![img](https://i.imgur.com/2kowm19.png)
+> เพิ่มข้อมูล Employee (เมื่อข้อมูลซ้ำ)
+![img](https://i.imgur.com/wpBGAxA.png)
+> เพิ่มข้อมูล Employee (เมื่อข้อมูลไม่ครบ)
+![img](https://i.imgur.com/aB02MXm.png)
+
+### [PUT] /updateEmployeeData
+> แก้ไขข้อมูล Employee 
+![img](https://i.imgur.com/nYp081P.png)
+> แก้ไขข้อมูล Employee (เมื่อไม่พบผู้ใช้)
+![img](https://i.imgur.com/0WJfYBu.png)
+> แก้ไขข้อมูล Employee (เมื่อข้อมูลผิดพลาด)
+![img](https://i.imgur.com/7Fjonn5.png)
+
+### [DELETE] /deleteEmployeeData
+> เพิ่มข้อมูล Employee 
+![img](https://i.imgur.com/2kowm19.png)
+> เพิ่มข้อมูล Employee (เมื่อข้อมูลซ้ำ)
+![img](https://i.imgur.com/wpBGAxA.png)
