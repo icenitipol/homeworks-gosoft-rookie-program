@@ -48,10 +48,10 @@ export const newEmployee = (data: Omit<EmployeeData, "id">): Promise<ResultSetHe
 export const updateEmployee = (data: UpdateEmployeeData): Promise<ResultSetHeader> => {
     return new Promise((resolve, reject: RejectQueryError) => {
         let setting = ""
-        if (data.email) setting += "EMAIL = :email "
-        if (data.tel) setting += "TEL = :tel "
-        if (data.pos) setting += "POSITION = :pos "
-        const sql = "UPDATE EMPLOYEE SET " + setting + " WHERE ID = :id";
+        if (data.email) setting += "EMAIL = :email,"
+        if (data.tel) setting += "TEL = :tel,"
+        if (data.pos) setting += "POSITION = :pos,"
+        const sql = "UPDATE EMPLOYEE SET " + setting.slice(0, -1) + " WHERE ID = :id";
         pool.query(sql, {
             id: data.id,
             tel: data.tel,
